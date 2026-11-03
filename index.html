@@ -12,41 +12,129 @@
 
 <meta name="theme-color" content="#100b20">
 
-<title>AnimeVerse</title>
+<title>AnimeVerse V3</title>
 
 <style>
 
 *{box-sizing:border-box}
 
-body{margin:0;background:#100b20;color:#fff;font-family:Arial,sans-serif}
+body{
 
-header{padding:20px;background:#1b1230;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+ margin:0;background:#0c0915;color:white;
 
-h1{color:#b98aff;margin:0}
+ font-family:Arial,sans-serif;
 
-main{max-width:1000px;margin:auto;padding:20px}
+}
 
-section{background:#211832;padding:18px;border-radius:15px;margin:18px 0}
+header{
 
-input,button{padding:12px;border:0;border-radius:9px;margin:5px}
+ padding:18px 5%;background:#171025;
 
-input{background:#302443;color:white;max-width:100%;width:100%}
+ display:flex;justify-content:space-between;
 
-button{background:#8955d9;color:white;font-weight:bold}
+ align-items:center;flex-wrap:wrap;gap:15px;
 
-button:active{opacity:.7}
+ position:sticky;top:0;z-index:10;
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+}
 
-.anime{background:#302443;padding:15px;border-radius:12px}
+.logo{font-size:26px;font-weight:bold;color:#c49aff}
 
-.anime h3{margin:8px 0}
+nav a{color:white;text-decoration:none;margin:0 8px}
 
-video{width:100%;border-radius:12px;background:#000}
+.hero{
 
-a{color:#c9a7ff}
+ padding:65px 7%;min-height:300px;
 
-small{color:#c4b6d8}
+ background:linear-gradient(90deg,#24113e,#151020);
+
+}
+
+.hero h1{font-size:40px;margin:5px 0}
+
+.hero p{max-width:500px;color:#d1c5df;line-height:1.6}
+
+button{
+
+ border:0;border-radius:9px;padding:11px 17px;
+
+ background:#9258df;color:white;font-weight:bold;
+
+ cursor:pointer;margin:4px;
+
+}
+
+button:hover{background:#ad7af0}
+
+main{max-width:1200px;margin:auto;padding:20px}
+
+h2{margin-top:28px}
+
+input,select{
+
+ background:#241c32;color:white;
+
+ border:1px solid #49365e;border-radius:9px;
+
+ padding:13px;margin:5px;max-width:100%;
+
+}
+
+#search{width:min(100%,500px)}
+
+.grid{
+
+ display:grid;
+
+ grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+
+ gap:16px;
+
+}
+
+.card{
+
+ background:#1c1529;border-radius:13px;
+
+ overflow:hidden;cursor:pointer;
+
+ transition:.2s;
+
+}
+
+.card:hover{transform:translateY(-4px)}
+
+.poster{
+
+ width:100%;height:210px;object-fit:cover;
+
+ background:#302440;
+
+}
+
+.card h3{margin:10px 12px 5px}
+
+.card p{margin:5px 12px 13px;color:#bdb0cf;font-size:13px}
+
+.panel{
+
+ background:#1c1529;padding:18px;
+
+ border-radius:14px;margin:20px 0;
+
+}
+
+#details{display:none}
+
+#player{width:100%;background:black;border-radius:12px}
+
+.episode-list{display:flex;flex-wrap:wrap;gap:6px}
+
+.episode-list button{background:#352547}
+
+small{color:#b9a9ce}
+
+footer{text-align:center;padding:30px;color:#9b8baa}
 
 </style>
 
@@ -56,131 +144,395 @@ small{color:#c4b6d8}
 
 <header>
 
-<h1>AnimeVerse ✦</h1>
+ <div class="logo">AnimeVerse ✦</div>
 
-<span>Discover • Watch • Enjoy</span>
+ <nav>
+
+  <a href="#home">Home</a>
+
+  <a href="#library">Discover</a>
+
+  <a href="#mylist">My List</a>
+
+  <a href="#watch">Player</a>
+
+ </nav>
 
 </header>
+
+<section class="hero" id="home">
+
+ <p>WELCOME TO YOUR ANIME WORLD</p>
+
+ <h1>Unlimited Anime Adventures.</h1>
+
+ <p>Discover new worlds, explore your favourite anime and keep track of your episodes.</p>
+
+ <button onclick="document.getElementById('library').scrollIntoView()">Explore Anime</button>
+
+</section>
 
 <main>
 
 <section>
 
-<h2>Find Anime</h2>
+ <input id="search" placeholder="Search anime..." oninput="render()">
 
-<input id="search" placeholder="Search anime..." oninput="searchAnime()">
+ <select id="genre" onchange="render()">
 
-</section>
+  <option value="All">All Genres</option>
 
-<section>
+  <option>Action</option>
 
-<h2>Anime Library</h2>
+  <option>Adventure</option>
 
-<div class="grid" id="library">
+  <option>Fantasy</option>
 
-<div class="anime"><h3>Naruto</h3><p>Action • Adventure</p><button onclick="choose('Naruto')">Watch</button></div>
+  <option>Drama</option>
 
-<div class="anime"><h3>One Piece</h3><p>Adventure • Fantasy</p><button onclick="choose('One Piece')">Watch</button></div>
+  <option>Mystery</option>
 
-<div class="anime"><h3>Attack on Titan</h3><p>Action • Drama</p><button onclick="choose('Attack on Titan')">Watch</button></div>
-
-<div class="anime"><h3>Death Note</h3><p>Mystery • Thriller</p><button onclick="choose('Death Note')">Watch</button></div>
-
-<div class="anime"><h3>Jujutsu Kaisen</h3><p>Action • Fantasy</p><button onclick="choose('Jujutsu Kaisen')">Watch</button></div>
-
-<div class="anime"><h3>Fullmetal Alchemist</h3><p>Adventure • Fantasy</p><button onclick="choose('Fullmetal Alchemist')">Watch</button></div>
-
-</div>
+ </select>
 
 </section>
 
-<section>
+<section id="continueSection" style="display:none">
 
-<h2 id="playerTitle">Video Player</h2>
+ <h2>Continue Watching</h2>
 
-<video id="player" controls playsinline></video>
-
-<p><small>Play a video file from your device or use a direct video URL you are authorised to stream.</small></p>
-
-<h3>Choose a video file</h3>
-
-<input type="file" id="file" accept="video/*">
-
-<h3>Or enter an authorised video URL</h3>
-
-<input id="videoUrl" placeholder="Paste direct video URL here">
-
-<button onclick="playUrl()">Play URL</button>
+ <div class="grid" id="continueList"></div>
 
 </section>
 
-<section>
+<section id="library">
 
-<h2>Watch on Official Services</h2>
+ <h2>Discover Anime</h2>
 
-<p><a href="https://www.crunchyroll.com/" target="_blank">Crunchyroll</a></p>
-
-<p><a href="https://www.netflix.com/" target="_blank">Netflix</a></p>
-
-<p><a href="https://www.primevideo.com/" target="_blank">Prime Video</a></p>
-
-<p><a href="https://www.youtube.com/" target="_blank">YouTube</a></p>
-
-<small>Availability depends on your region and subscription.</small>
+ <div class="grid" id="animeGrid"></div>
 
 </section>
 
-<footer><small>AnimeVerse • Your anime world</small></footer>
+<section id="details" class="panel">
+
+ <button onclick="closeDetails()">← Back</button>
+
+ <h2 id="detailTitle"></h2>
+
+ <p id="detailGenre"></p>
+
+ <p id="detailDescription"></p>
+
+ <button onclick="toggleList()">＋ My List</button>
+
+ <h3>Seasons</h3>
+
+ <select id="season" onchange="showEpisodes()"></select>
+
+ <h3>Episodes</h3>
+
+ <div id="episodes" class="episode-list"></div>
+
+</section>
+
+<section id="mylist">
+
+ <h2>My List</h2>
+
+ <div class="grid" id="savedList"></div>
+
+</section>
+
+<section id="watch" class="panel">
+
+ <h2 id="playerTitle">AnimeVerse Player</h2>
+
+ <video id="player" controls playsinline></video>
+
+ <p><small>Select an authorised video file or enter a direct video URL.</small></p>
+
+ <h3>Play a video from your device</h3>
+
+ <input type="file" id="file" accept="video/*">
+
+ <h3>Or enter a video URL</h3>
+
+ <input id="videoUrl" placeholder="Enter authorised video URL" style="width:100%">
+
+ <button onclick="playURL()">Play Video</button>
+
+</section>
+
+<section class="panel">
+
+ <h2>Official Streaming Services</h2>
+
+ <p><a href="https://www.crunchyroll.com/" target="_blank">Crunchyroll</a></p>
+
+ <p><a href="https://www.netflix.com/" target="_blank">Netflix</a></p>
+
+ <p><a href="https://www.primevideo.com/" target="_blank">Prime Video</a></p>
+
+ <p><a href="https://www.youtube.com/" target="_blank">YouTube</a></p>
+
+</section>
 
 </main>
 
+<footer>AnimeVerse V3 • Made for Anime Fans ✦</footer>
+
 <script>
 
-const player=document.getElementById('player');
+const animeData=[
 
-function choose(name){
+ {
 
- document.getElementById('playerTitle').textContent=name+' — Video Player';
+  id:1,name:"Naruto",genre:"Action",
 
- document.getElementById('videoUrl').focus();
+  description:"Follow Naruto Uzumaki on his journey to become the strongest ninja and earn the respect of his village.",
+
+  poster:"https://placehold.co/400x550/302044/ffffff?text=NARUTO",
+
+  seasons:2
+
+ },
+
+ {
+
+  id:2,name:"One Piece",genre:"Adventure",
+
+  description:"Join Monkey D. Luffy and his crew on an unforgettable journey across the seas.",
+
+  poster:"https://placehold.co/400x550/253d62/ffffff?text=ONE+PIECE",
+
+  seasons:2
+
+ },
+
+ {
+
+  id:3,name:"Death Note",genre:"Mystery",
+
+  description:"A mysterious notebook changes the life of a student and creates a battle of intelligence.",
+
+  poster:"https://placehold.co/400x550/252525/ffffff?text=DEATH+NOTE",
+
+  seasons:1
+
+ },
+
+ {
+
+  id:4,name:"Jujutsu Kaisen",genre:"Action",
+
+  description:"A young student enters the world of curses and supernatural adventures.",
+
+  poster:"https://placehold.co/400x550/42305d/ffffff?text=JUJUTSU+KAISEN",
+
+  seasons:2
+
+ },
+
+ {
+
+  id:5,name:"Attack on Titan",genre:"Drama",
+
+  description:"Humanity fights for survival in a world surrounded by enormous mysterious creatures.",
+
+  poster:"https://placehold.co/400x550/594033/ffffff?text=ATTACK+ON+TITAN",
+
+  seasons:4
+
+ },
+
+ {
+
+  id:6,name:"Fullmetal Alchemist",genre:"Fantasy",
+
+  description:"Two brothers travel in search of a way to restore what they lost through alchemy.",
+
+  poster:"https://placehold.co/400x550/48504c/ffffff?text=FULLMETAL",
+
+  seasons:1
+
+ }
+
+];
+
+let selected=null;
+
+let saved=JSON.parse(localStorage.getItem("animeSaved")||"[]");
+
+let watched=JSON.parse(localStorage.getItem("animeWatched")||"[]");
+
+function cardHTML(a){
+
+ return `<div class="card" onclick="openAnime(${a.id})">
+
+ <img class="poster" src="${a.poster}" alt="${a.name} poster">
+
+ <h3>${a.name}</h3><p>${a.genre}</p></div>`;
 
 }
 
-function playUrl(){
+function render(){
 
- const url=document.getElementById('videoUrl').value.trim();
+ const q=document.getElementById("search").value.toLowerCase();
 
- if(!url){alert('Enter a video URL first.');return;}
+ const g=document.getElementById("genre").value;
+
+ let filtered=animeData.filter(a=>
+
+ a.name.toLowerCase().includes(q) &&
+
+ (g==="All"||a.genre===g)
+
+ );
+
+ document.getElementById("animeGrid").innerHTML=
+
+ filtered.map(cardHTML).join("")||"<p>No anime found.</p>";
+
+ document.getElementById("savedList").innerHTML=
+
+ animeData.filter(a=>saved.includes(a.id)).map(cardHTML).join("")||
+
+ "<p>Your list is empty.</p>";
+
+ let recent=animeData.filter(a=>watched.includes(a.id));
+
+ document.getElementById("continueSection").style.display=
+
+ recent.length?"block":"none";
+
+ document.getElementById("continueList").innerHTML=
+
+ recent.map(cardHTML).join("");
+
+}
+
+function openAnime(id){
+
+ selected=animeData.find(a=>a.id===id);
+
+ document.getElementById("details").style.display="block";
+
+ document.getElementById("detailTitle").textContent=selected.name;
+
+ document.getElementById("detailGenre").textContent=selected.genre;
+
+ document.getElementById("detailDescription").textContent=selected.description;
+
+ let s=document.getElementById("season");
+
+ s.innerHTML="";
+
+ for(let i=1;i<=selected.seasons;i++){
+
+  s.innerHTML+=`<option value="${i}">Season ${i}</option>`;
+
+ }
+
+ showEpisodes();
+
+ document.getElementById("details").scrollIntoView();
+
+}
+
+function showEpisodes(){
+
+ if(!selected)return;
+
+ let season=document.getElementById("season").value;
+
+ let html="";
+
+ for(let i=1;i<=12;i++){
+
+  html+=`<button onclick="playEpisode(${i})">Episode ${i}</button>`;
+
+ }
+
+ document.getElementById("episodes").innerHTML=html;
+
+}
+
+function playEpisode(number){
+
+ if(!selected)return;
+
+ document.getElementById("playerTitle").textContent=
+
+ selected.name+" • Season "+document.getElementById("season").value+
+
+ " • Episode "+number;
+
+ if(!watched.includes(selected.id))watched.unshift(selected.id);
+
+ localStorage.setItem("animeWatched",JSON.stringify(watched));
+
+ render();
+
+ document.getElementById("watch").scrollIntoView();
+
+ alert("Choose an authorised video file or video URL to play this episode.");
+
+}
+
+function toggleList(){
+
+ if(!selected)return;
+
+ if(saved.includes(selected.id)){
+
+  saved=saved.filter(id=>id!==selected.id);
+
+ }else{
+
+  saved.push(selected.id);
+
+ }
+
+ localStorage.setItem("animeSaved",JSON.stringify(saved));
+
+ render();
+
+}
+
+function closeDetails(){
+
+ document.getElementById("details").style.display="none";
+
+}
+
+function playURL(){
+
+ let url=document.getElementById("videoUrl").value.trim();
+
+ if(!url){alert("Please enter a video URL.");return;}
+
+ const player=document.getElementById("player");
 
  player.src=url;
 
- player.play().catch(()=>alert('This video could not be played. Check the URL and format.'));
+ player.play().catch(()=>alert("Video could not play. Check the URL and format."));
 
 }
 
-document.getElementById('file').addEventListener('change',function(){
+document.getElementById("file").addEventListener("change",function(){
 
  if(this.files&&this.files[0]){
 
- player.src=URL.createObjectURL(this.files[0]);
+  const player=document.getElementById("player");
 
- player.play().catch(()=>{});
+  player.src=URL.createObjectURL(this.files[0]);
+
+  player.play().catch(()=>{});
 
  }
 
 });
 
-function searchAnime(){
-
- const q=document.getElementById('search').value.toLowerCase();
-
- document.querySelectorAll('.anime').forEach(card=>{
-
- card.style.display=card.innerText.toLowerCase().includes(q)?'block':'none';
-
- });
-
-}
+render();
 
 </script>
 
